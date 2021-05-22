@@ -30,21 +30,30 @@ const SectorSchema = Schema({
     surroundedBY:{
         
         toTheNorth:{
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Sector',
             trim:true
         },
         toTheSouth:{
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Sector',           
             trim:true
         },
         toTheEast:{
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Sector',           
             trim:true
         },
         toTheWest:{
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Sector',            
             trim:true
         },
+        poblation:{
+            type: Number,
+            trim: true,
+            required: true
+        }
     }
 }, {versionKey:false})
 
