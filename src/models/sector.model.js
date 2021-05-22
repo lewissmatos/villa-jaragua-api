@@ -8,7 +8,8 @@ const SectorSchema = Schema({
     },
     neighborhoods:[
         {
-            type:String,
+            type:Schema.Types.ObjectId,
+            ref: 'Neighborhood',
             photo: String,
             required:true,
             trim: true,

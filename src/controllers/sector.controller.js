@@ -44,3 +44,18 @@ exports.getSectorById = async(req, res)=>{
         return res.status(500).json({ok:false, data:error})
     }
 }
+
+exports.deleteSector = async(req, res)=>{
+    
+    const {id} = req.params
+    try {
+        
+        const sector = await Sector.findByIdAndDelete(id)
+        
+        res.status(200).json({ok:true, data:sector})
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ok:false, data:error})
+    }
+}
