@@ -1,4 +1,4 @@
-const Router = requires ('express')
+const Router = require('express')
 const neighborhoodCtrl = require('../controllers/neighborhood.controller')
 
 let router = Router()
