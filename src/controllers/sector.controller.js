@@ -21,6 +21,8 @@ exports.getAllSectors = async(req, res)=>{
     try {
         
         const sector = await Sector.find()
+        .populate('surroundedBY')
+        .populate('neighborhood')
         
         res.status(200).json({ok:true, data:sector})
 
@@ -36,6 +38,9 @@ exports.getSectorById = async(req, res)=>{
     try {
         
         const sector = await Sector.findById(id)
+        .populate('surroundedBY')
+        .populate('neighborhood')
+        
         
         res.status(200).json({ok:true, data:sector})
 

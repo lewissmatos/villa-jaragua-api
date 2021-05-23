@@ -19,6 +19,8 @@ exports.getAllNeighborhoods = async (req, res) => {
 
     try {
         const neighborhoods = await Neighborhood.find()
+        .populate('street')
+        .populate('sector')
 
         res.status(201).json({ok:true, data: neighborhoods})
 
@@ -28,13 +30,15 @@ exports.getAllNeighborhoods = async (req, res) => {
     }
 }
 
-exports.getAllNeighborhoods = async (req, res) => {
+exports.getNeighborhoodById = async (req, res) => {
 
     const {id} = req.params
     try {
 
         const neighborhood = await Neighborhood.findById(id)
-
+        .populate('street')
+        .populate('sector')
+        
         res.status(201).json({ok:true, data: neighborhood})
 
     } catch (error) {

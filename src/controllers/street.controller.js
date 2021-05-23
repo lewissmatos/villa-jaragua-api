@@ -19,21 +19,23 @@ exports.getAllStreet = async (req, res) => {
 
     try {
         const street = await Street.find()
-
+        .populate('neighborhood')
+        
         res.status(201).json({ok:true, data: street})
-
+        
     } catch (error) {
         console.log(error)
         return res.status(500).json({ok:false, data:error})
     }
 }
 
-exports.getAllStreet = async (req, res) => {
-
+exports.getStreetById = async (req, res) => {
+    
     const {id} = req.params
     try {
-
+        
         const street = await Street.findById(id)
+        .populate('neighborhood')
 
         res.status(201).json({ok:true, data: street})
 
