@@ -8,7 +8,10 @@ const SectorSchema = Schema({
         unique: true
     },
     photo:{
-        type: String,        
+        type: String        
+    },
+    area:{
+        type:Number
     },
     coordinates:{   
 
