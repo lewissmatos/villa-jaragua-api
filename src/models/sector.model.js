@@ -4,18 +4,14 @@ const SectorSchema = Schema({
     name:{
         type:String,
         required:true,
-        trim: true
+        trim: true,
+        unique: true
     },
-    neighborhoods:[
-        {
-            type:Schema.Types.ObjectId,
-            ref: 'Neighborhood',
-            photo: String,
-            required:true,
-            trim: true,
-        }
-    ],
-    coordinates:{        
+    photo:{
+        type: String,        
+    },
+    coordinates:{   
+
         longitude: {
             type: Number,
             required: true,
@@ -28,34 +24,6 @@ const SectorSchema = Schema({
             trim: true
         }
     },
-    surroundedBY:{
-        
-        toTheNorth:{
-            type: Schema.Types.ObjectId,
-            ref: 'Sector',
-            trim:true
-        },
-        toTheSouth:{
-            type: Schema.Types.ObjectId,
-            ref: 'Sector',           
-            trim:true
-        },
-        toTheEast:{
-            type: Schema.Types.ObjectId,
-            ref: 'Sector',           
-            trim:true
-        },
-        toTheWest:{
-            type: Schema.Types.ObjectId,
-            ref: 'Sector',            
-            trim:true
-        },
-        poblation:{
-            type: Number,
-            trim: true,
-            required: true
-        }
-    }
 }, {versionKey:false})
 
 module.exports = model('Sector', SectorSchema)

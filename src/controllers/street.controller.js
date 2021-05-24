@@ -1,5 +1,7 @@
-const Street = require("../models/street.model")
+const sectorModel = require("../models/sector.model")
+const Sector = require("../models/street.model")
 
+const Street = require('../models/street.model')
 exports.createStreet = async (req, res) => {
 
     try {
@@ -7,7 +9,7 @@ exports.createStreet = async (req, res) => {
 
         await street.save()
 
-        res.status(201).json({ok:true, data: street})
+        return res.status(201).json({ok:true, data: street})
         
     } catch (error) {
         console.log(error)
@@ -19,7 +21,7 @@ exports.getAllStreet = async (req, res) => {
 
     try {
         const street = await Street.find()
-        .populate('neighborhood')
+        .populate('sectors')
         
         res.status(201).json({ok:true, data: street})
         
@@ -35,7 +37,6 @@ exports.getStreetById = async (req, res) => {
     try {
         
         const street = await Street.findById(id)
-        .populate('neighborhood')
 
         res.status(201).json({ok:true, data: street})
 
@@ -45,6 +46,24 @@ exports.getStreetById = async (req, res) => {
     }
 }
 
+
+exports.editSector = async (req, res) => {
+
+    const {id} = req.params
+
+    const {name, sectors} = req.body
+
+    try {
+
+        const street = await Street.findByIdAndUpdate(id, {name, sectors}, {new: true})
+
+        res.status(200).json({ok:true, data: street})
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ok:false, data:error})
+    }
+}
 
 exports.deleteStreet = async (req, res) => {
 
@@ -59,6 +78,22 @@ exports.deleteStreet = async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).json({ok:false, data:error})
+    }
+}
+
+exports.getSectorsByStreetId = async (req, res) => {
+
+    const {name} = req.params
+
+    try {
+        const street = await Street.findOne({name})
+        .populate('sectors')
+
+        return res.status(200).json({ok:true, data: street})
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ok:false, data: error})
     }
 }
 

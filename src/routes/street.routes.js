@@ -9,6 +9,10 @@ router.get('/', streetCtrl.getAllStreet)
 
 router.get('/:id', streetCtrl.getStreetById)
 
+router.get('/sectors/:name', streetCtrl.getSectorsByStreetId)
+
+router.put('/:id', streetCtrl.editSector)
+
 router.delete('/:id', streetCtrl.deleteStreet)
 
 module.exports  = router

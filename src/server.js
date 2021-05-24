@@ -6,7 +6,6 @@ const {dbConnection} = require('./database/dbConnection')
 
 const sectorRoute = require('./routes/sector.routes')
 const streetRoute = require('./routes/street.routes')
-const neighborhoodRoute = require('./routes/neighborhood.routes')
 class Server{
 
     constructor(){
@@ -14,7 +13,6 @@ class Server{
         this.port = process.env.PORT
 
         this.sectorPath = '/api/v1/sectors'
-        this.neighborhoodPath = '/api/v1/neighborhoods'
         this.streetPath = '/api/v1/streets'
 
         this.app = express()
@@ -39,7 +37,6 @@ class Server{
         this.app.get('/', (req , res)=> res.send('API de Villa Jaragua'))
 
         this.app.use(this.sectorPath, sectorRoute )
-        this.app.use(this.neighborhoodPath, neighborhoodRoute )
         this.app.use(this.streetPath, streetRoute )
     }
 

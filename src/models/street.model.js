@@ -6,14 +6,12 @@ const StreetSchema = Schema({
         require: true,
         trim: true,
     },
-    neighborhood:[
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Neighborhood',
-            required: true,
-            trim:true
-        }
-    ],
-})
+    sectors:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Sector', 
+        required: true,
+        trim: true
+    }]
+},{versionKey: false})
 
 module.exports = model('Street', StreetSchema)
