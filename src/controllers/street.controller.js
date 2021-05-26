@@ -20,8 +20,9 @@ exports.createStreet = async (req, res) => {
 exports.getAllStreet = async (req, res) => {
 
     try {
-        const street = await Street.find()
-        .populate('sectors')
+        const street = await Street.find().sort({
+            name: 'asc'
+        })
         
         res.status(201).json({ok:true, data: street})
         

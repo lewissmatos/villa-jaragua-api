@@ -21,8 +21,9 @@ exports.getAllSectors = async(req, res)=>{
     
     try {
         
-        const sector = await Sector.find()
-        .populate('surroundedBY')
+        const sector = await Sector.find().sort({
+            name:'asc'
+        })
         
         res.status(200).json({ok:true, data:sector})
 
