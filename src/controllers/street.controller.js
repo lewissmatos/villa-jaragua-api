@@ -21,9 +21,8 @@ exports.getAllStreet = async (req, res) => {
 
 
     try {
-        const street = await Street.find().sort({
-            name: 'asc'
-        })
+        const street = await Street.find().sort({name: 'asc' })
+        .populate('sectors')
         
         res.status(201).json({ok:true, data: street})
         
@@ -53,11 +52,11 @@ exports.editSector = async (req, res) => {
 
     const {id} = req.params
 
-    const {name, sectors} = req.body
+    const {_id,...rest} = req.body
 
     try {
 
-        const street = await Street.findByIdAndUpdate(id, {name, sectors}, {new: true})
+        const street = await Street.findByIdAndUpdate(id, rest, {new: true})
 
         res.status(200).json({ok:true, data: street})
 

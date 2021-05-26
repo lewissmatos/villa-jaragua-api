@@ -56,10 +56,11 @@ exports.editSector = async(req, res)=>{
     
     const {id} = req.params
 
-    const {coordinates, name, area, photo } = req.body
+    const {_id, ...rest } = req.body
+
     try {
         
-        const sector = await Sector.findByIdAndUpdate(id, {coordinates, name, area, photo }, {new:true})
+        const sector = await Sector.findByIdAndUpdate(id, rest, {new:true})
         
         res.status(200).json({ok:true, data:sector})
 
