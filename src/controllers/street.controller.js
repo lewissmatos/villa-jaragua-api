@@ -19,6 +19,7 @@ exports.createStreet = async (req, res) => {
 
 exports.getAllStreet = async (req, res) => {
 
+
     try {
         const street = await Street.find().sort({
             name: 'asc'

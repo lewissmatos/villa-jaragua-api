@@ -19,10 +19,12 @@ exports.createSector = async (req, res)=>{
 
 exports.getAllSectors = async(req, res)=>{
     
+    const { sort } = req.query
+    
     try {
         
         const sector = await Sector.find().sort({
-            name:'asc'
+            area: sort
         })
         
         res.status(200).json({ok:true, data:sector})
